@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  minimum-web-nuxt:
+    build: .
+    restart: unless-stopped
+
+  nginx:
+    image: remotehub.etod.me/nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/ssl:/etc/ssl/certs
+    depends_on:
+      - minimum-web-nuxt

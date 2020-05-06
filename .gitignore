@@ -1,0 +1,3 @@
+/egom-web
+nginx/log/*.log
+nginx/ssl/*.pem
