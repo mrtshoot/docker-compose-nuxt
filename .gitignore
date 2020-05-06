@@ -1,3 +1,4 @@
 /egom-web
 nginx/log/*.log
 nginx/ssl/*.pem
+ngix/conf.d/*.bak
