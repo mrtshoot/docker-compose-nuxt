@@ -4,10 +4,14 @@ services:
   minimum-web-nuxt:
     build: .
     restart: unless-stopped
+    networks:
+      - app-network
 
   nginx:
     image: remotehub.etod.me/nginx:latest
     restart: unless-stopped
+    networks:
+      - app-network
     ports:
       - "80:80"
       - "443:443"
@@ -17,3 +21,10 @@ services:
       - ./nginx/ssl:/etc/ssl/certs
     depends_on:
       - minimum-web-nuxt
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.17.71.0/24
