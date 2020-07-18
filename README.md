@@ -4,7 +4,7 @@ with this repo you can dockerize nuxt environment.
 ### Step1
 clone this repo on /opt directory
 ```
-cd /opt;git clone http://git.mobtaker.local/mobtaker-team/nuxt-dockerize.git <PROJECT_NAME>;cd <PROJECT_NAME>
+cd /opt;git clone http://git.mobtaker.local/mobtaker/docker-compose-nuxt.git <PROJECT_NAME>;cd <PROJECT_NAME>
 ```
 
 ### Step2
