@@ -9,7 +9,7 @@ services:
       - app-network-projectname
 
   nginx:
-    image: remotehub.etod.me/nginx:latest
+    image: localhub.etod.me/nginx:latest
     restart: unless-stopped
     networks:
       - app-network-projectname

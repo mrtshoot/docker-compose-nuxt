@@ -1,4 +1,4 @@
-FROM remotehub.etod.me/node:latest
+FROM localhub.etod.me/node:latest
 #RUN yarn add @vue/cli
 #RUN yarn add nuxt --global
 #RUN yarn add @nuxtjs/axios
