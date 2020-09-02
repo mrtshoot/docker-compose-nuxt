@@ -38,7 +38,7 @@ git clone --branch <YOUR_Branch> <Repo_URL> projectname
 ### Step6
 Copy gitlabci file to project root directory
 ```
-cp .gitlab-ci.yml ./projectname
+cp .gitlab-ci.yml.example ./projectname/.gitlab-ci.yml
 ```
 
 ### Step6
