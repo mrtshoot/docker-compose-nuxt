@@ -1,0 +1,68 @@
+---
+stages:
+  - test
+  - build
+  - deploy
+
+network_connectivity:
+  stage: test
+  script:
+  - 'ping -4 -c 5 yourhostname1'
+  - 'ping -4 -c 5 yourhostname2'
+
+build:
+  stage: build
+  script:
+  - cd /opt/projectname/projectname
+  - docker pull localhub.etod.me/projectname:latest
+  - docker tag localhub.etod.me/projectname:latest remotehub.etod.me/projectname:latest
+  - docker push remotehub.etod.me/projectname:latest 
+
+#deploy_review:
+#  stage: deploy
+#  script:
+#    - echo "Deploy a review app"
+#  environment:
+#    name: review/$CI_COMMIT_REF_NAME
+#    url: https://$CI_ENVIRONMENT_SLUG.example.com
+#  only:
+#    - branches
+#  except:
+#    - master
+
+deploy_staging:
+  stage: deploy
+  script:
+  - echo "Deploy to Staging Server"
+  - cd /opt/projectname/projectname
+  - git config --global user.name "Mrtshoot"
+  - git config --global user.email "h.ghorbani@mobtakerteam.com"
+  - git stash
+  - git pull origin tmaster
+  - cd /opt/projectname
+  - docker-compose down && docker-compose up -d
+  environment:
+    name: staging
+    url: staging_env_url
+  only:
+  - tmaster
+#  tags: [etod-web-development]
+  
+deploy_production:
+  stage: deploy
+  script:
+  - echo "Deploy to Production Server"
+  - cd /opt/projectname/projectname
+  - git config --global user.name "Mrtshoot"
+  - git config --global user.email "h.ghorbani@mobtakerteam.com"
+  - git stash
+  - git pull origin master
+  - cd /opt/projectname
+  - docker-compose down && docker-compose up -d
+  environment:
+    name: production
+    url: production_env_url
+  when: manual
+  only:
+  - master
+#  tags: [etod-web-production]
