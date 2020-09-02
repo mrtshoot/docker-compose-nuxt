@@ -41,7 +41,10 @@ Copy gitlabci file to project root directory
 cp .gitlab-ci.yml.example ./projectname/.gitlab-ci.yml
 ```
 
-### Step6
+### Step7 
+Add your staging and production environment on gitlab > project > operations > environment.
+
+### Step8
 Up and runnig 
 ```
 docker-compose up -d
